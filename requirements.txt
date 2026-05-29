@@ -1,0 +1,5 @@
+numpy
+scipy
+networkx
+Pillow
+opencv-python-headless

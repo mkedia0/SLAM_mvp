@@ -1,0 +1,28 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local recordings and generated run artifacts
+data/
+runs/
+manifests/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.png
+*.exr
+git-home-backup/
+
+# Xcode local state
+DerivedData/
+*.xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# Keep source docs and app scaffold tracked.
+!README.md
+!requirements.txt
+!mnet_slam/
+!ios/
+!docs/

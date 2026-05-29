@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mNET SLAM Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>mNET SLAM Dashboard</h1>
+        <p id="sessionPath">Loading session...</p>
+      </div>
+      <div class="toolbar">
+        <label class="toggle"><input id="autoRefresh" type="checkbox" checked> Live refresh</label>
+        <button id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="metrics" aria-label="Run metrics">
+        <article><span>Frames</span><strong id="framesCount">0</strong></article>
+        <article><span>Poses</span><strong id="posesCount">0</strong></article>
+        <article><span>Edges</span><strong id="edgesCount">0</strong></article>
+        <article><span>Loops</span><strong id="loopsCount">0</strong></article>
+        <article><span>Tracking OK</span><strong id="trackingOk">0%</strong></article>
+        <article><span>Mean Inliers</span><strong id="meanInliers">0</strong></article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel trajectory-panel">
+          <div class="panel-heading">
+            <h2>Trajectory</h2>
+            <span id="edgeKinds">No edges yet</span>
+          </div>
+          <canvas id="trajectoryCanvas" width="900" height="560"></canvas>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h2>Tracking Quality</h2>
+            <span>Inliers per frame</span>
+          </div>
+          <canvas id="inlierCanvas" width="640" height="260"></canvas>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Frame</th><th>Source</th><th>Inliers</th><th>Latency</th><th>Status</th></tr>
+              </thead>
+              <tbody id="recentRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/dashboard.js"></script>
+  </body>
+</html>
