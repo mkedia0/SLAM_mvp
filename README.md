@@ -7,6 +7,20 @@ It is intentionally backend-swappable:
 - Current backend: CPU Python/OpenCV RGBD visual odometry, keyframes, confidence-weighted depth correspondences, visual place recognition, loop edges, lightweight pose-graph relaxation.
 - Intended production backend: RTAB-Map on Linux when available, or ORB-SLAM3/OpenVSLAM style wrappers behind the same `GraphSLAMBackend.process(frame)` contract.
 
+
+## App Store Proof Of Concept
+
+The first releasable product direction is ARKit-first. The iOS app is designed for an iPhone mounted on a roborock driving laps through a small mock warehouse.
+
+The app has four tabs:
+
+- Mapping: start new environments, capture ARKit poses/depth, and repeat-map the same environment for more coverage.
+- Training: create niche object labels and collect examples for future Core ML/Create ML training.
+- Processing: queue frames, show reconstruction progress, and visualize a labeled top-down 3D map.
+- Results: show every tracked item with label, confidence, timestamp, map name, and XYZ coordinates.
+
+Current iOS source lives in `ios/MNetMapper`. See `docs/PRODUCT_DECISION.md`, `docs/ROBOROCK_DEMO_RUNBOOK.md`, and `docs/APP_STORE_PLAN.md`.
+
 ## Run The Included Sample
 
 ```bash

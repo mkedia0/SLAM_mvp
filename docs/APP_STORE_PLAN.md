@@ -1,35 +1,34 @@
 # App Store Plan
 
+## Current Direction
+
+The first release should be ARKit-first. The app can run as a complete proof of concept on LiDAR-capable iPhones without a Linux SLAM backend. Backend compatibility remains a later roadmap item.
+
 ## Current Status
 
 - Python RGBD-SLAM MVP exists and can process Record3D-style folders/manifests.
 - Local dashboard exists for session database visualization.
 - iOS SwiftUI app scaffold exists under `ios/MNetMapper`.
-- Full Xcode is not active on this Mac, so archive/sign/upload cannot happen yet.
+- ARKit capture source has been added for camera pose/scene depth capture.
+- Full Xcode is not active on this Mac, so archive/sign/upload cannot happen here yet.
 
 ## App Store Readiness Steps
 
-1. Enroll in the Apple Developer Program or confirm team access.
-2. Install Xcode 26 or later and select it with `xcode-select`.
-3. Create the Xcode iOS app target and add `ios/MNetMapper` sources.
+1. Confirm Apple Developer Program team access.
+2. Install full Xcode and select it with `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`.
+3. Generate/open the iOS project:
+   - Option A: create a new Xcode iOS App target and add `ios/MNetMapper` sources.
+   - Option B: install XcodeGen and run `xcodegen generate` from `ios/`.
 4. Configure bundle ID, signing team, app icon, launch screen, and usage descriptions.
-5. Implement device capture:
-   - ARKit/SceneDepth path for supported iPhone/iPad Pro devices.
-   - Non-ARKit queued RGB/depth upload path for processing.
-6. Add model/object training storage and export format.
-7. Test on real LiDAR iPhone hardware.
-8. Use TestFlight for internal and external beta feedback.
-9. Prepare App Store metadata:
-   - Name, subtitle, keywords, description.
-   - Screenshots and optional preview video.
-   - Privacy Nutrition Label.
-   - Accessibility information.
-   - Age rating.
-10. Archive in Xcode and upload to App Store Connect.
+5. Test on a LiDAR iPhone mounted on the roborock.
+6. Verify the app has a built-in demo mode and does not need unavailable backend services.
+7. Prepare screenshots for all four tabs.
+8. Upload to TestFlight first.
+9. Submit for App Review after fixing device-test crashes and privacy metadata.
 
 ## App Review Notes To Prepare
 
-- Explain that camera/depth data is used to build spatial maps and object positions.
-- Document whether data stays on-device or is uploaded to a backend.
-- If any backend processing is used, provide a privacy policy URL.
-- Avoid claiming production-grade navigation/safety until validated.
+- Explain that camera/depth data is used to build approximate 3D maps and item positions.
+- State whether data stays on-device for the first release. If backend upload is added, provide a privacy policy URL.
+- Avoid positioning this as safety-critical robotics or autonomous navigation.
+- Include review instructions for the four tabs and built-in sample/demo data.

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import simd
 
 struct EnvironmentMap: Identifiable, Hashable {
     let id: UUID
@@ -9,6 +10,8 @@ struct EnvironmentMap: Identifiable, Hashable {
     var passes: Int
     var frameCount: Int
     var loopClosures: Int
+    var distanceMeters: Double
+    var lastPose: Vector3
 
     init(
         id: UUID = UUID(),
@@ -17,7 +20,9 @@ struct EnvironmentMap: Identifiable, Hashable {
         status: MapStatus = .queued,
         passes: Int = 1,
         frameCount: Int = 0,
-        loopClosures: Int = 0
+        loopClosures: Int = 0,
+        distanceMeters: Double = 0,
+        lastPose: Vector3 = .zero
     ) {
         self.id = id
         self.name = name
@@ -26,6 +31,8 @@ struct EnvironmentMap: Identifiable, Hashable {
         self.passes = passes
         self.frameCount = frameCount
         self.loopClosures = loopClosures
+        self.distanceMeters = distanceMeters
+        self.lastPose = lastPose
     }
 }
 
@@ -74,4 +81,56 @@ struct TrackedItem: Identifiable, Hashable {
     var z: Double
     var confidence: Double
     var mapName: String
+}
+
+struct Vector3: Hashable {
+    var x: Double
+    var y: Double
+    var z: Double
+
+    static let zero = Vector3(x: 0, y: 0, z: 0)
+
+    init(x: Double, y: Double, z: Double) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+
+    init(_ value: SIMD3<Float>) {
+        self.x = Double(value.x)
+        self.y = Double(value.y)
+        self.z = Double(value.z)
+    }
+}
+
+struct ARFrameSample: Identifiable, Hashable {
+    let id: UUID
+    var timestamp: Date
+    var pose: Vector3
+    var trackingState: String
+    var queuedForProcessing: Bool
+
+    init(id: UUID = UUID(), timestamp: Date = Date(), pose: Vector3, trackingState: String, queuedForProcessing: Bool = true) {
+        self.id = id
+        self.timestamp = timestamp
+        self.pose = pose
+        self.trackingState = trackingState
+        self.queuedForProcessing = queuedForProcessing
+    }
+}
+
+struct WarehouseLabel: Identifiable, Hashable {
+    let id: UUID
+    var title: String
+    var position: Vector3
+    var confidence: Double
+    var color: Color
+
+    init(id: UUID = UUID(), title: String, position: Vector3, confidence: Double, color: Color = .cyan) {
+        self.id = id
+        self.title = title
+        self.position = position
+        self.confidence = confidence
+        self.color = color
+    }
 }

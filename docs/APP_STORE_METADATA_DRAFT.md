@@ -6,38 +6,38 @@ mNET Mapper
 
 ## Subtitle
 
-LiDAR mapping and item tracking
+LiDAR inventory mapping demo
 
 ## Description Draft
 
-mNET Mapper helps teams record RGBD walks, build reusable 3D maps, train niche object detectors, process queued depth frames, and export item positions with timestamps.
+mNET Mapper is an experimental warehouse mapping tool for LiDAR-capable iPhones. Mount the iPhone on a small robot platform, record repeatable laps through a mock warehouse, queue RGBD frames for processing, train niche object labels, and inspect tracked item coordinates in meters.
 
-Designed for environments such as grocery stores, stock rooms, labs, and warehouses, the app separates mapping, training, processing, and results so users can repeatedly scan the same environment and compare tracked object positions over time.
+The app is organized into four tabs: Mapping, Training, Processing, and Results. Mapping captures new environments and supports repeated passes. Training lets users define specialized object labels. Processing shows queued frames and a labeled 3D map preview. Results reports item labels, confidence, timestamps, and XYZ positions.
 
 ## Keywords Draft
 
-LiDAR, mapping, inventory, object detection, AR, 3D scan, RGBD, grocery, SLAM
+LiDAR, mapping, inventory, warehouse, object detection, ARKit, 3D scan, RGBD, SLAM
 
 ## Privacy Draft
 
-The app uses camera and depth data to construct maps and identify object locations. The production privacy policy must state whether recordings are stored only on-device, synced to user-controlled storage, or uploaded to a backend for processing.
+The first App Store proof of concept should keep camera/depth recordings on-device unless the user explicitly exports or connects to a local processor. If any cloud/backend upload is added, update the privacy policy and App Store privacy nutrition answers before submission.
 
 ## Required Permission Copy Drafts
 
 `NSCameraUsageDescription`
 
 ```text
-mNET Mapper uses the camera and depth sensor to build 3D maps and locate tracked objects.
+mNET Mapper uses the camera and LiDAR depth sensor to map mock warehouse environments and locate tracked objects.
 ```
 
 `NSLocalNetworkUsageDescription`
 
 ```text
-mNET Mapper can stream RGBD frames to a local processing service you control.
+mNET Mapper can connect to a local processing service you control for queued RGBD frame processing.
 ```
 
 `NSPhotoLibraryUsageDescription`
 
 ```text
-mNET Mapper can import or export recordings and map snapshots from your photo library when you choose.
+mNET Mapper can import or export recordings, map snapshots, and training examples when you choose.
 ```
